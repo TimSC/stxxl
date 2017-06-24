@@ -137,7 +137,7 @@ void basic_test()
     std::generate(values3.begin(), values3.end(), rand_pairs(rand32) _STXXL_FORCE_SEQUENTIAL);
 
     // --- initial import
-    std::cout << "Initial import...";
+    std::cout << "Initial import..." << std::flush;
     stats_begin = *stxxl::stats::get_instance();
 
     STXXL_CHECK(map.begin() == map.end());
@@ -153,7 +153,7 @@ void basic_test()
 
     // --- insert: new (from values2) and existing (from values1) values, with
     // --- and without checking
-    std::cout << "Insert...";
+    std::cout << "Insert..." << std::flush;
     stats_begin = *stxxl::stats::get_instance();
 
     for (unsigned_type i = 0; i < n_values / 2; i++) {
@@ -178,7 +178,7 @@ void basic_test()
 
     // --- find: existing (from external and internal memory) and non-existing
     // --- values
-    std::cout << "Find...";
+    std::cout << "Find..." << std::flush;
     stats_begin = *stxxl::stats::get_instance();
 
     std::random_shuffle(values1.begin(), values1.end());
@@ -192,7 +192,7 @@ void basic_test()
     STXXL_MSG(stxxl::stats_data(*stxxl::stats::get_instance()) - stats_begin);
 
     // --- insert with overwriting
-    std::cout << "Insert with overwriting...";
+    std::cout << "Insert with overwriting..." << std::flush;
     stats_begin = *stxxl::stats::get_instance();
 
     std::random_shuffle(values1.begin(), values1.end());
@@ -219,7 +219,7 @@ void basic_test()
     STXXL_MSG(stxxl::stats_data(*stxxl::stats::get_instance()) - stats_begin);
 
     // --- erase: existing and non-existing values, with and without checking
-    std::cout << "Erase...";
+    std::cout << "Erase..." << std::flush;
     stats_begin = *stxxl::stats::get_instance();
 
     std::random_shuffle(values1.begin(), values1.end());
@@ -251,7 +251,7 @@ void basic_test()
 
     // make sure there are some values in our unordered_map: externally
     // [0..n/2) and internally [n/2..n) from values1
-    std::cout << "[ ]-operator...";
+    std::cout << "[ ]-operator..." << std::flush;
     stats_begin = *stxxl::stats::get_instance();
 
     map.insert(values1.begin(), values1.begin() + n_values / 2, mem_to_sort);
@@ -286,7 +286,7 @@ void basic_test()
     STXXL_CHECK(map.size() == 0);
 
     // --- additional bulk insert test
-    std::cout << "additional bulk-insert...";
+    std::cout << "additional bulk-insert..." << std::flush;
     stats_begin = *stxxl::stats::get_instance();
 
     map.insert(values1.begin(), values1.begin() + n_values / 2, mem_to_sort);
